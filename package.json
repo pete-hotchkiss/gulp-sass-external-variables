@@ -1,0 +1,42 @@
+{
+  "name": "gulp-sass-external-variables",
+  "description": "Parses and external JSON source, injecting properties which are subsequently available as part of SASS processing",
+  "title": "Gulp Sass External Varialbes",
+  "version": "0.0.1",
+  "author": "Pete Hotchkiss",
+  "scripts": {
+    "test": "npm run coverage && npm run rm",
+    "coverage": "istanbul cover test/*.js",
+    "rm": "rimraf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pete-hotchkiss/gulp-sass-external-variables.git"
+  },
+  "keywords": [
+    "gulp",
+    "json",
+    "sass",
+    "scss",
+    "css"
+  ],
+  "bugs": {
+    "url": "https://github.com/pete-hotchkiss/gulp-sass-external-variables/issues"
+  },
+  "homepage": "https://github.com/pete-hotchkiss/gulp-sass-external-variables",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.4",
+    "gulp-ruby-sass": "^0.7.1",
+    "tape": "^2.14.0",
+    "through2": "^0.5.1"
+  },
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "gulp-match": "^0.2.0",
+    "gulp-util": "^3.0.0",
+    "through": "^2.3.4"
+  }
+}
