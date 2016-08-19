@@ -48,7 +48,7 @@ module.exports = function(opt) {
     var sassVariables = [];
 
     loadVariablesRecursive(parsedJSON, '', function pushVariable(assignmentString) {
-      console.log('Pushing >>>>>>> ', assignmentString);
+      // console.log('Pushing >>>>>>> ', assignmentString);
       sassVariables.push(assignmentString);
     });
 
