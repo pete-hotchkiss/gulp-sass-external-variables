@@ -37,7 +37,7 @@ var jsonSass = require('gulp-json-sass'),
 gulp.task('sass', function() {
   return gulp
     .src(['./external.json', '/path/to/your/base/sass/file.scss'])
-    .pipe(jsonSass({
+    .pipe(sassExternalVariables({
       sass: false
     }))
     .pipe(concat('output.sass'))
