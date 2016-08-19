@@ -80,6 +80,9 @@ module.exports = function(opt) {
           cb('$' + path + key + ': "' + val + '"' + opt.eol);
         } else {
           if ( val.length !== undefined ) {
+            // TODO: Optional flag in passed opt object to determine if arrays are flattened or not
+            // TODO: Parse on data types - to colour names dont get stringfied...
+            // TODO: Write a test for this...
             cb('$' + path + key + ': ' + JSON.stringify(val).replace('[','').replace(']','') +  opt.eol);
           } else {
             //  TODO: convert complex object structures to sass maps
