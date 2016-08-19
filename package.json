@@ -5,9 +5,9 @@
   "version": "0.0.2",
   "author": "Pete Hotchkiss",
   "scripts": {
-    "test": "npm run coverage && npm run rm",
-    "coverage": "istanbul cover test/*.js",
-    "rm": "rimraf ./coverage"
+    "ntest": "npm run coverage && npm run rm",
+    "ncoverage": "istanbul cover test/*.js",
+    "nrm": "rimraf ./coverage"
   },
   "repository": {
     "type": "git",
