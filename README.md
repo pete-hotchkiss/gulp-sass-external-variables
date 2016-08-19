@@ -1,5 +1,6 @@
-# gulp-sass-external-variables
-[![Build Status](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables)
+# gulp-sass-external-variables[![Build Status](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables)
+
+
 Parses and external JSON source, injecting properties which are subsequently available as part of SASS processing
 
 _**Note**_: This is heavily based on the seemingly inactive [gulp-json-sass]( https://github.com/rbalicki2/gulp-json-sass) so much of the credit must go to it's author.
