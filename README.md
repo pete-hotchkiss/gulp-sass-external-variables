@@ -58,7 +58,11 @@ In the root of your project a file ```external.json```
   }
 }
 ```
+<<<<<<< HEAD
 ... and where ever you store you main SASS library, a file ```file.scss```
+=======
+... and where ever you store you main SASS library.
+>>>>>>> f25e1210aa7639a69884c7b5f9f6b40eebef2f19
 ```sass
 @each $item in $array-to-list {
   .medal--#{$item} {
