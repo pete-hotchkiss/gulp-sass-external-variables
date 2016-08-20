@@ -2,7 +2,7 @@
   "name": "gulp-sass-external-variables",
   "description": "Parses and external JSON source, injecting properties which are subsequently available as part of SASS processing",
   "title": "Gulp Sass External Varialbes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Pete Hotchkiss",
   "scripts": {
     "test": "npm run coverage && npm run rm",

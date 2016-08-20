@@ -58,7 +58,7 @@ function runTests(t, opt) {
     }))
     .pipe(concat('test.' + suffix))
     // .pipe( gulp.dest('./bin'))
-    .pipe( print() )
+    // .pipe( print() )
     // .pipe( through2.obj(function runJsonSassTests(file, encoding, done) {
     //   console.log( "file", suffix, file.contents.toString() );
     // }))
@@ -68,7 +68,7 @@ function runTests(t, opt) {
         failedSassCompilation = true;
       })
       .on('end', function sassCompilationEnd() {
-        console.log('asdasd');
+        console.log('>> compiled');
         if (opt.sassShouldCompile && !failedSassCompilation) {
           t.pass('sass compiled successfully, as expected');
         } else if (!opt.sassShouldCompile && failedSassCompilation) {
@@ -116,47 +116,22 @@ for (var i = 0; i < sasses.length; i++) {
     sass: sasses[false]
   });
 
-  // setupTest('base case minus numeric, illegal character support should not break the plugin', {
-  //   src: path.join(__dirname, './fixtures/base.json'),
-  //   prefixFirstNumericCharacter: false,
-  //   escapeIllegalCharacters: false,
-  //   sass: sasses[i]
-  // });
-  //
-  // setupTest('proper support for variables that begin with numbers', {
-  //   src: path.join(__dirname, './fixtures/numbers.json'),
-  //   sass: sasses[i]
-  // });
-  //
+  setupTest('base case minus numeric, illegal character support should not break the plugin', {
+    src: path.join(__dirname, './fixtures/base.json'),
+    prefixFirstNumericCharacter: false,
+    escapeIllegalCharacters: false,
+    sass: sasses[i]
+  });
+
+  setupTest('proper support for variables that begin with numbers', {
+    src: path.join(__dirname, './fixtures/numbers.json'),
+    sass: sasses[i]
+  });
+
   // setupTest('fails when variables begin with numbers and prefixFirstNumericCharacter === false', {
   //   src: path.join(__dirname, './fixtures/numbers.json'),
   //   sassShouldCompile: false,
   //   prefixFirstNumericCharacter: false,
-  //   sass: sasses[i]
-  // });
-  //
-  // setupTest('proper support for escaping illegal characters', {
-  //   src: path.join(__dirname, './fixtures/escape.json'),
-  //   sass: sasses[i]
-  // });
-  //
-  // setupTest('sass fails to compile when variables contain illegal characters and escapeIllegalCharacters === false', {
-  //   src: path.join(__dirname, './fixtures/escape.json'),
-  //   escapeIllegalCharacters: false,
-  //   sassShouldCompile: false,
-  //   sass: sasses[i]
-  // });
-  //
-  // setupTest('malformed json breaks sass compilation (as it relies on the variables) but not jsonSass when ignoreJsonErrors === true', {
-  //   src: path.join(__dirname, './fixtures/malformed.json'),
-  //   sassShouldCompile: false,
-  //   ignoreJsonErrors: true,
-  //   sass: sasses[i]
-  // });
-  //
-  // setupTest('malformed json breaks jsonSass when ignoreJsonErrors is not given', {
-  //   src: path.join(__dirname, './fixtures/malformed.json'),
-  //   jsonShouldCompile: false,
   //   sass: sasses[i]
   // });
 
