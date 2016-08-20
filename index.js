@@ -92,6 +92,5 @@ module.exports = function(opt) {
       }
     }
   }
-
   return through(processJSON);
 }
