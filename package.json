@@ -48,6 +48,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-util": "^3.0.0",
     "istanbul": "^0.4.4",
+    "minimatch": "^3.0.3",
     "through": "^2.3.4",
     "wiredep": "^4.0.0"
   }
