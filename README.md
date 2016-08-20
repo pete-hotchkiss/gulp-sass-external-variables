@@ -1,4 +1,4 @@
-# gulp-sass-external-variables[![Build Status](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables)
+# gulp-sass-external-variables [![Build Status](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/gulp-sass-external-variables) [![GitHub issues](https://img.shields.io/github/issues/pete-hotchkiss/gulp-sass-external-variables.svg)](https://github.com/pete-hotchkiss/gulp-sass-external-variables/issues) [![Version](https://img.shields.io/badge/ver-0.0.2-blue.svg)](https://img.shields.io/badge/ver-0.0.2-blue.svg)
 
 
 Parses and external JSON source, injecting properties which are subsequently available as part of SASS processing
