@@ -5,6 +5,8 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 // import browserSync from 'browser-sync';
 import {stream as wiredep} from 'wiredep';
 
+var sassExternalVars = require('.');
+
 // const reload = browserSync.reload;
 const $ = gulpLoadPlugins(
       { pattern: '*' }
@@ -13,9 +15,12 @@ const $ = gulpLoadPlugins(
 var ace = false;
 
 gulp.task('styles', () => {
-  return gulp.src(['test/fixtures/stub.scss'])
+  return gulp.src(['test/fixtures/base.json','test/fixtures/stub.scss'])
     .pipe( $.print() )
     // .pipe( $.plumber() )
+    .pipe( sassExternalVars( {sass:false} ))
+    .pipe( $.concat({ path: 'framework.scss'}))
+    .pipe( gulp.dest('./src/sass'))
     .pipe($.sass({
       outputStyle: 'expanded',
       precision: 10,

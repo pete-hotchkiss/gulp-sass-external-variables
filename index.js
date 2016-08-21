@@ -77,7 +77,7 @@ module.exports = function(opt) {
         }
 
         if (typeof val !== 'object') {
-          cb('$' + path + key + ': "' + val + '"' + opt.eol);
+          cb('$' + path + key + ': \'' + val + '\'' + opt.eol);
         } else {
           if ( val.length !== undefined ) {
             // TODO: Optional flag in passed opt object to determine if arrays are flattened or not
