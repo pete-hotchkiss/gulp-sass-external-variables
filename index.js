@@ -15,20 +15,23 @@ var firstCharacterIsNumber = /^[0-9]/;
 
 module.exports = function(opt) {
   opt = opt || {};
-  opt.delim = opt.delim || '-';
   opt.sass = !!opt.sass;
   opt.eol = opt.sass ? '' : ';';
   opt.ignoreJsonErrors = !!opt.ignoreJsonErrors;
   opt.escapeIllegalCharacters = opt.escapeIllegalCharacters === undefined ? true : opt.escapeIllegalCharacters;
   opt.firstCharacter = opt.firstCharacter || '_';
   opt.prefixFirstNumericCharacter = opt.prefixFirstNumericCharacter === undefined ? true : opt.prefixFirstNumericCharacter;
+  // If no parseObjectsAsMaps opt value is parsed assume true
+  opt.parseObjectsAsMaps = opt.parseObjectsAsMaps === undefined ? true : opt.parseObjectsAsMaps;
+  opt.delim = opt.delim || '-';
+
+  // process the JSON
+  var sassVariables = [];
 
   function processJSON(file) {
 
     // if it does not have a .json suffix, ignore the file
-    // if (!gulpmatch(file,'**/*.json')) {
     if (!gulpmatch(file, /^.*\.(json)/ )) {
-      console.log('not JSON fool');
       this.push(file);
       return;
     }
@@ -46,13 +49,12 @@ module.exports = function(opt) {
       return;
     }
 
-    // process the JSON
-    var sassVariables = [];
+
 
     loadVariablesRecursive(parsedJSON, '', function pushVariable(assignmentString) {
-      // console.log('Pushing >>>>>>> ', assignmentString);
+      console.log('Pushing >>>>>>> ', assignmentString);
       sassVariables.push(assignmentString);
-    });
+    }, false, null);
 
     var sass = sassVariables.join('\n');
     file.contents = Buffer(sass);
@@ -62,7 +64,12 @@ module.exports = function(opt) {
     this.push(file);
   }
 
-  function loadVariablesRecursive(obj, path, cb) {
+  function loadVariablesRecursive(obj, path, cb, sub, mp) {
+
+    // if( sub && mp ) { console.log( "****", sub, mp ) };
+    if( sub && mp ) { sassVariables.push('$'+ mp + ': (') };
+
+    // console.log('path', path);
     //  Loops through everything...
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -79,7 +86,15 @@ module.exports = function(opt) {
         }
 
         if (typeof val !== 'object') {
-          cb('$' + path + key + ': \'' + val + '\'' + opt.eol);
+          console.log('val', key, val);
+
+          // depending on if we're in a sub-object or not
+          if( sub ) {
+
+            cb('\'' + path + key + '\': \'' + val + '\',' );
+          } else {
+            cb('$' + path + key + ': \'' + val + '\'' + opt.eol);
+          }
         } else {
           if ( val.length !== undefined ) {
             // TODO: Optional flag in passed opt object to determine if arrays are flattened or not
@@ -88,11 +103,17 @@ module.exports = function(opt) {
             cb('$' + path + key + ': ' + JSON.stringify(val).replace('[','').replace(']','') +  opt.eol);
           } else {
             //  TODO: convert complex object structures to sass maps
-            loadVariablesRecursive(val, path + key + opt.delim, cb);
+            console.log("parsing: ", "val:",val, "pk", path+key+ ':(' + 1 + ');' );
+
+            // cb('$' + path + key + ': (' + loadVariablesRecursive(val, '' ,cb,true) + ')' + opt.eol)
+            loadVariablesRecursive(val, '' , cb, true, path+key);
+            // loadVariablesRecursive(val, path + key + opt.delim, cb, true);
           }
         }
       }
     }
+
+    if( sub && mp ) { sassVariables.push(');'); }
   }
   return through(processJSON);
 }
