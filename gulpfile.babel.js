@@ -15,7 +15,7 @@ const $ = gulpLoadPlugins(
 var ace = false;
 
 gulp.task('styles', () => {
-  return gulp.src(['test/fixtures/base.json','test/fixtures/stub.scss'])
+  return gulp.src(['test/fixtures/.foo.base.json','test/fixtures/stub.scss'])
     .pipe( $.print() )
     // .pipe( $.plumber() )
     .pipe( sassExternalVars( {sass:false} ))

@@ -26,7 +26,9 @@ module.exports = function(opt) {
   function processJSON(file) {
 
     // if it does not have a .json suffix, ignore the file
-    if (!gulpmatch(file,'**/*.json')) {
+    // if (!gulpmatch(file,'**/*.json')) {
+    if (!gulpmatch(file, /^.*\.(json)/ )) {
+      console.log('not JSON fool');
       this.push(file);
       return;
     }
