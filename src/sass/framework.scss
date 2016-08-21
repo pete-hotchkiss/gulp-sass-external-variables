@@ -3,6 +3,10 @@ $aValue: '123';
 $anObject: (
 'subVal1': '1',
 'subVal2': 'two',
+$subval3: (
+'foo': '900',
+'bar': 'true',
+);
 );
 $anArray: 1,2;
 body {

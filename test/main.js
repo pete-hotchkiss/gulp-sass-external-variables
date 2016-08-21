@@ -48,7 +48,7 @@ function runTests(t, opt) {
       })
     .pipe(through2.obj(function runJsonSassTests(file, encoding, done) {
       if (!file.path.match('stub')) {
-        t.equal(file.contents.toString().split('\n').length, 5, 'test json should result in a 5 line file');
+        t.equal(file.contents.toString().split('\n').length, 7, 'test json should result in a 7 line file');
       } else {
         t.equal(file.contents.toString(), fileObj.contents.toString(), 'non-json files should not be modified (content)');
         t.equal(file.path, fileObj.path, 'non-json files should not be modified (file path)');
@@ -111,13 +111,13 @@ sasses = [false];
 for (var i = 0; i < sasses.length; i++) {
   console.log("Called: ", i);
   setupTest('base case', {
-    src: path.join(__dirname, './fixtures/base.json'),
+    src: path.join(__dirname, './fixtures/.foo.base.json'),
     sassShouldCompile: true,
     sass: sasses[false]
   });
 
   setupTest('base case minus numeric, illegal character support should not break the plugin', {
-    src: path.join(__dirname, './fixtures/base.json'),
+    src: path.join(__dirname, './fixtures/.foo.base.json'),
     prefixFirstNumericCharacter: false,
     escapeIllegalCharacters: false,
     sass: sasses[i]
